@@ -125,5 +125,5 @@ while opcao_selecionada != 6:
     else:
         print("Opção inválida. ")
         opcao_selecionada = opcao()
-        print("Programa finalizado. ")
+print("Programa finalizado. ")
 
