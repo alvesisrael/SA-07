@@ -1,5 +1,5 @@
 reserv_pessoa = {}
-
+select_aviao = None
 class fly:
 
     def __init__(self,assento):
@@ -7,7 +7,7 @@ class fly:
         for i in range(assento):
             self.reserva_dicio[i] = "Assento disponivel."
 
-    def reservar(self):
+    def reservar(self, select_aviao):
         assentos_disp = 0
         for i in range(len(self.reserva_dicio)):
             if self.reserva_dicio[i] == "Assento disponivel.":
@@ -48,7 +48,7 @@ def opcao():
 def opcao1():
     avioes = []
     for i in range(2):
-        avioes2 = int(input("Digite o mumero do avião: \n"))
+        avioes2 = int(input("Digite o numero do avião: \n"))
         avioes.append(avioes2)
     return avioes 
 avioes = []        
@@ -65,25 +65,29 @@ def opcao2(avioes):
 
 dicionario_ob = {}
 
-
-disp = []
-key = list (dicionario_ob)
-for i in range(len(dicionario_ob)):
-    if dicionario_ob[key[i]] != "":
-        disp.append(key[i])
+def dispo():
+    disp = []
+    key = list (dicionario_ob)
+    for i in range(len(dicionario_ob)):
+        if dicionario_ob[key[i]] != "":
+            disp.append(key[i])
+    return disp
 
 def opcao3(dicionario_ob):
-    
+    disp = dispo()
     print(f"Os aviões disponiveis são: {disp}")
     select_aviao = int(input("Digite o numero do avião: \n"))
     if select_aviao in disp:
-        dicionario_ob[select_aviao].reservar()
+        dicionario_ob[select_aviao].reservar(select_aviao)
     else:
         print("Esse avião não existe.")
-    return select_aviao    
+    return select_aviao
+
+
 
 
 def opcao4():
+    disp = dispo()
     print(f"Os aviões disponiveis são {disp}")
     select_aviao = int(input("Digite o numero do avião: \n"))
     if select_aviao in disp:
@@ -100,52 +104,26 @@ def opcao5():
     else:
         print(reserva)
 
-        
+opcao_selecionada = opcao()
 
-if opcao() == 1:
-    avioes = opcao1()
-    opcao()
-if opcao() == 2:
-    dicionario_ob = opcao2(avioes)
-    opcao()    
-if opcao() == 3:    
-    select_aviao = opcao3(dicionario_ob)
-    opcao()
-if opcao() == 4:
-    opcao4()
-    opcao()
-if opcao() == 5:
-    opcao5()
-    opcao()
-if opcao() == 6:
-    print("Programa finalizado. ") 
-else:
-    print("Opção inválida. ")       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
+while opcao_selecionada != 6:
+    if  opcao_selecionada == 1:
+        avioes = opcao1()
+        opcao_selecionada = opcao()
+    elif opcao_selecionada == 2:
+        dicionario_ob = opcao2(avioes)
+        opcao_selecionada = opcao()
+    elif opcao_selecionada == 3:
+        opcao3(dicionario_ob)
+        opcao_selecionada = opcao()
+    elif opcao_selecionada == 4:
+        opcao4()
+        opcao_selecionada = opcao()
+    elif opcao_selecionada == 5:
+        opcao5()
+        opcao_selecionada = opcao()
+    else:
+        print("Opção inválida. ")
+        opcao_selecionada = opcao()
+        print("Programa finalizado. ")
 
