@@ -7,7 +7,7 @@ class fly:
         for i in range(assento):
             self.reserva_dicio[i] = "Assento disponivel."
 
-    def reservar(self, select_aviao):
+    def reservar(self):
         assentos_disp = 0
         for i in range(len(self.reserva_dicio)):
             if self.reserva_dicio[i] == "Assento disponivel.":
